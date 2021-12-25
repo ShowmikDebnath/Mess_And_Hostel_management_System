@@ -122,6 +122,44 @@ public class Registration extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == signup) {
+            JInternalFrame f = new JInternalFrame();
+            f.add(signup_panel);
+            f.setSize(600, 800);
+            f.setTitle("Signup Form");
+            f.setClosable(true);
+            signup.disable();
+
+            front.add(f);
+            f.setVisible(true);
+
+        }
+        if (e.getSource() == login) {
+            JInternalFrame f = new JInternalFrame();
+            f.add(login_panel);
+            f.setSize(600, 800);
+            f.setTitle("Login Form");
+            f.setClosable(true);
+            front.add(f);
+            f.setVisible(true);
+
+        }
+        if (e.getSource() == btn_signup) {
+
+            SignUp();
+        }
+
+        if (e.getSource() == btn_login) {
+
+            Login();
+
+        }
+    }
+
+    private void SignUp() {
+
+    }
+    private void Login() {
 
     }
 }
