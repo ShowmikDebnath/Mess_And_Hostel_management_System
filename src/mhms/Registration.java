@@ -156,8 +156,8 @@ public class Registration extends JFrame implements ActionListener{
             f.add(signup_panel);
             f.setSize(600, 800);
             f.setTitle("Signup Form");
-            f.setClosable(true);
-            signup.disable();
+            //f.setClosable(true);
+            //signup.disable();
 
             front.add(f);
             f.setVisible(true);
@@ -168,7 +168,8 @@ public class Registration extends JFrame implements ActionListener{
             f.add(login_panel);
             f.setSize(600, 800);
             f.setTitle("Login Form");
-            f.setClosable(true);
+            //f.setClosable(true);
+            //login.disable();
             front.add(f);
             f.setVisible(true);
 
@@ -186,7 +187,32 @@ public class Registration extends JFrame implements ActionListener{
     }
 
     private void SignUp() {
+        int x = 0;
+        Connection con = ConnectionProvider.getConnection();
+        String Username = tf_signup_username.getText();
+        String Email = tf_signup_email.getText();
+        char[] p1 = tf_signup_password.getPassword();
+        String Password = new String(p1);
+        char[] p2 = tf_signup_confirm_password.getPassword();
+        String Confirm_password = new String(p2);
 
+        if(Confirm_password.equals(Password)){
+            try {
+                PreparedStatement ps = con.prepareStatement("insert into member(username,email,password) values(?,?,?)");
+                ps.setString(1, Username);
+                ps.setString(2, Email);
+                ps.setString(3, Password);
+                ps.executeUpdate();
+                x++;
+                if (x > 0) {
+                    JOptionPane.showMessageDialog(btn_signup, "Data Saved Successfully");
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }else {
+            JOptionPane.showMessageDialog(btn_signup, "Password Does Not Match");
+        }
     }
     private void Login() {
 
