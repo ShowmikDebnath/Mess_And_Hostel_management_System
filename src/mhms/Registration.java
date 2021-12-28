@@ -13,12 +13,14 @@ public class Registration extends JFrame implements ActionListener{
     JFrame frame;
     JPanel signup_panel, front, registration;
     JPanel login_panel;
-    JLabel signup_username, welcome, signup_email, signup_password, signup_confirm_password, signup_name, signup_phone;
+    JLabel signup_username, welcome, signup_email, signup_password, signup_confirm_password, signup_name, signup_phone, signup_address, signup_age, signup_ins, signup_edu;
     JLabel login_email, login_password;
-    JTextField tf_signup_username, tf_signup_email, tf_login_email, tf_signup_name;
-    JPasswordField tf_signup_password, tf_signup_confirm_password, tf_login_password;;
+    JTextField tf_signup_username, tf_signup_email, tf_login_email, tf_signup_name, tf_signup_phone, tf_signup_address, tf_signup_age, tf_signup_ins, tf_signup_edu;
+    JPasswordField tf_signup_password, tf_signup_confirm_password, tf_login_password;
     JButton btn_signup, btn_login, login, signup;
     Boolean isLogined;
+
+
     public Registration()
     {
         frame = new JFrame();
@@ -34,36 +36,63 @@ public class Registration extends JFrame implements ActionListener{
         signup_name = new JLabel("Name: ");
         signup_name.setBounds(10, 60, 120, 30);
         tf_signup_name = new JTextField();
+        tf_signup_name.setBounds(200, 60, 200, 30);
 
 
         signup_username = new JLabel("User Name : ");
         signup_username.setBounds(10, 100, 120, 30);
         tf_signup_username = new JTextField();
-        tf_signup_username.setBounds(180, 100, 120, 30);
+        tf_signup_username.setBounds(200, 100, 200, 30);
 
 
 
         signup_email = new JLabel("Email : ");
         signup_email.setBounds(10, 140, 120, 30);
         tf_signup_email = new JTextField();
-        tf_signup_email.setBounds(180, 140, 120, 30);
+        tf_signup_email.setBounds(200, 140, 200, 30);
 
 
         signup_password = new JLabel("Password : ");
         signup_password.setBounds(10, 180, 120, 30);
         tf_signup_password = new JPasswordField();
-        tf_signup_password.setBounds(180, 180, 120, 30);
+        tf_signup_password.setBounds(200, 180, 200, 30);
 
 
         signup_confirm_password = new JLabel("Confirm Password : ");
         signup_confirm_password.setBounds(10, 220, 180, 30);
         tf_signup_confirm_password = new JPasswordField();
-        tf_signup_confirm_password.setBounds(180, 220, 120, 30);
+        tf_signup_confirm_password.setBounds(200, 220, 200, 30);
 
         signup_phone = new JLabel("Phone: ");
+        signup_phone.setBounds(10, 260, 120, 30);
+        tf_signup_phone = new JTextField();
+        tf_signup_phone.setBounds(200, 260, 200, 30);
+
+        signup_address = new JLabel("Address: ");
+        signup_address.setBounds(10, 300, 120, 30);
+        tf_signup_address = new JTextField();
+        tf_signup_address.setBounds(200, 300, 200, 30);
+
+        signup_ins = new JLabel("Institution: ");
+        signup_ins.setBounds(10, 340, 120, 30);
+        tf_signup_ins = new JTextField();
+        tf_signup_ins.setBounds(200, 340, 200, 30);
+
+        signup_edu = new JLabel("Educational Qualification: ");
+        signup_edu.setBounds(10, 380, 150, 30);
+        tf_signup_edu = new JTextField();
+        tf_signup_edu.setBounds(200, 380, 200, 30);
+
+        signup_age = new JLabel("Age: ");
+        signup_age.setBounds(10, 420, 120, 30);
+        tf_signup_age = new JTextField();
+        tf_signup_age.setBounds(200, 420, 200, 30);
+
+
+
 
         btn_signup = new JButton("Register");
-        btn_signup.setBounds(180, 600, 120, 40);
+        btn_signup.setBounds(150, 550, 120, 40);
 
 
 
@@ -72,28 +101,32 @@ public class Registration extends JFrame implements ActionListener{
         login = new JButton("Login");
 
         login_email = new JLabel("Email:");
-        login_password = new JLabel("Password :");
+        login_email.setBounds(50, 100, 120, 30);
         tf_login_email = new JTextField();
+        tf_login_email.setBounds(160, 100, 120, 30);
+
+
+        login_password = new JLabel("Password :");
+        login_password.setBounds(50, 140, 120, 30);
         tf_login_password = new JPasswordField();
+        tf_login_password.setBounds(160, 140, 120, 30);
+
         btn_login = new JButton("Login");
+        btn_login.setBounds(160, 220, 80, 30);
 
 
-        signup_username.setBounds(10, 100, 120, 30);
-
-
-
-
+        //signup_username.setBounds(10, 100, 120, 30);
 
 
 
         //btn_signup.setBounds(180, 300, 80, 40);
 
-        login_email.setBounds(10, 100, 120, 30);
-        login_password.setBounds(10, 140, 120, 30);
+
+
         //tf_signup_username.setBounds(80, 100, 120, 30);
-        tf_login_email.setBounds(80, 100, 120, 30);
-        tf_login_password.setBounds(80, 140, 120, 30);
-        btn_login.setBounds(100, 220, 80, 40);
+
+        //tf_login_password.setBounds(80, 140, 120, 30);
+
 
         login.setBounds(200, 400, 80, 40);
         signup.setBounds(400, 400, 80, 40);
@@ -106,10 +139,11 @@ public class Registration extends JFrame implements ActionListener{
         registration.add(login);
         registration.add(signup);
 
-        signup_panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "SIGN UP FORM", TitledBorder.CENTER, TitledBorder.TOP));
+        signup_panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Registration FORM", TitledBorder.CENTER, TitledBorder.TOP));
         login_panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "LOGIN FORM", TitledBorder.CENTER, TitledBorder.TOP));
 
         signup_panel.add(signup_name);
+        signup_panel.add(tf_signup_name);
         signup_panel.add(signup_username);
         signup_panel.add(tf_signup_username);
         signup_panel.add(signup_email);
@@ -118,7 +152,19 @@ public class Registration extends JFrame implements ActionListener{
         signup_panel.add(tf_signup_password);
         signup_panel.add(signup_confirm_password);
         signup_panel.add(tf_signup_confirm_password);
+        signup_panel.add(signup_phone);
+        signup_panel.add(tf_signup_phone);
+        signup_panel.add(signup_address);
+        signup_panel.add(tf_signup_address);
+        signup_panel.add(signup_ins);
+        signup_panel.add(tf_signup_ins);
+        signup_panel.add(signup_edu);
+        signup_panel.add(tf_signup_edu);
+        signup_panel.add(signup_age);
+        signup_panel.add(tf_signup_age);
         signup_panel.add(btn_signup);
+
+
         login_panel.add(login_email);
         login_panel.add(login_password);
         login_panel.add(tf_login_email);
