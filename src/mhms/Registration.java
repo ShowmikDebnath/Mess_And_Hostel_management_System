@@ -18,6 +18,7 @@ public class Registration extends JFrame implements ActionListener{
     JLabel signup_password, signup_confirm_password;
     JLabel login_email;
     JLabel login_password;
+
     JTextField tf_signup_username;
     JTextField tf_signup_email;
     JPasswordField tf_signup_password;
@@ -26,10 +27,15 @@ public class Registration extends JFrame implements ActionListener{
     JPasswordField tf_login_password;
     JButton btn_signup, btn_login, login, signup;
     Boolean isLogined;
+
+
+
+
     public Registration()
     {
+
         frame = new JFrame();
-        signup_panel = new JPanel();
+/*        signup_panel = new JPanel();
         front = new JPanel();
         registration = new JPanel();
         login_panel = new JPanel();
@@ -52,6 +58,8 @@ public class Registration extends JFrame implements ActionListener{
         tf_login_email = new JTextField();
         tf_login_password = new JPasswordField();
         btn_login = new JButton("Login");
+
+
         signup_username.setBounds(10, 100, 120, 30);
         signup_email.setBounds(10, 140, 120, 30);
         signup_password.setBounds(10, 180, 120, 30);
@@ -112,8 +120,71 @@ public class Registration extends JFrame implements ActionListener{
         frame.setSize(600, 400);
         frame.setLayout(new GridLayout(1, 2));
         frame.setTitle("Welcome Page");
+*/
+        JLabel labelSignUser = new JLabel("user name: ");
+        frame.add(labelSignUser);
+        JTextField textSignUser = new JTextField(100);
+        frame.add(textSignUser);
+
+        JLabel labelSignPass = new JLabel("password");
+        frame.add(labelSignPass);
+        JTextField textSignPassword = new JTextField(100);
+        frame.add(textSignPassword);
+/*
+
+        //Checkbox c = new Checkbox("roni");frame.add(c);
+        JLabel labelSignConfirmPass = new JLabel("Confirm password");
+        frame.add(labelSignConfirmPass);
+        JTextField textSignConfirmPassword = new JTextField(100);
+        frame.add(textSignPassword);
+
+        JLabel labelSignName = new JLabel("Name");
+        frame.add(labelSignName);
+        JTextField textSignName = new JTextField(100);
+        frame.add(textSignPassword);
+
+        JLabel labelSignEmail = new JLabel("Email");
+        frame.add(labelSignEmail);
+        JTextField textSignEmail = new JTextField(100);
+        frame.add(textSignPassword);
+
+        JLabel labelSignPhone = new JLabel("Phone");
+        frame.add(labelSignPhone);
+        JTextField textSignPhone = new JTextField(100);
+        frame.add(textSignPassword);
+
+        JLabel labelSignAddress = new JLabel("Address");
+        frame.add(labelSignAddress);
+        JTextField textSignAddress = new JTextField(100);
+        frame.add(textSignAddress);
+
+        JLabel labelSignProfession = new JLabel("Profession");
+        frame.add(labelSignProfession);
+        JTextField textSignProfession = new JTextField(100);
+        frame.add(textSignProfession);
+
+        JLabel labelSignInstituation = new JLabel("Instituation");
+        frame.add(labelSignInstituation);
+        JTextField textSignInstituation = new JTextField(100);
+        frame.add(textSignInstituation);
+
+        JLabel labelSignEducation = new JLabel("Educational Qualification");
+        frame.add(labelSignEducation);
+        JTextField textSignEducation = new JTextField(100);
+        frame.add(textSignEducation);
+
+        JLabel labelSignAge = new JLabel("Age-");
+        frame.add(labelSignAge);
+        JTextField textSignAge = new JTextField(100);
+        frame.add(textSignAge);
+*/
+
+
 
         frame.setVisible(true);
+        frame.setSize(600, 400);
+        frame.setLayout(new FlowLayout());
+        frame.setTitle("Welcome Page");
 
         btn_signup.addActionListener(this);
         btn_login.addActionListener(this);
