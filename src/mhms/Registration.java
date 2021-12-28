@@ -14,8 +14,8 @@ public class Registration extends JFrame implements ActionListener{
     JPanel signup_panel, front, registration;
     JPanel login_panel;
     JLabel signup_username, welcome, signup_email, signup_password, signup_confirm_password, signup_name, signup_phone, signup_address, signup_age, signup_ins, signup_edu;
-    JLabel login_email, login_password;
-    JTextField tf_signup_username, tf_signup_email, tf_login_email, tf_signup_name, tf_signup_phone, tf_signup_address, tf_signup_age, tf_signup_ins, tf_signup_edu;
+    JLabel login_uname, login_password;
+    JTextField tf_signup_username, tf_signup_email, tf_login_uname, tf_signup_name, tf_signup_phone, tf_signup_address, tf_signup_age, tf_signup_ins, tf_signup_edu;
     JPasswordField tf_signup_password, tf_signup_confirm_password, tf_login_password;
     JButton btn_signup, btn_login, login, signup;
     Boolean isLogined;
@@ -90,20 +90,18 @@ public class Registration extends JFrame implements ActionListener{
 
 
 
-
         btn_signup = new JButton("Register");
         btn_signup.setBounds(150, 550, 120, 40);
-
 
 
 
         signup = new JButton("Sign Up");
         login = new JButton("Login");
 
-        login_email = new JLabel("Email:");
-        login_email.setBounds(50, 100, 120, 30);
-        tf_login_email = new JTextField();
-        tf_login_email.setBounds(160, 100, 120, 30);
+        login_uname = new JLabel("Username:");
+        login_uname.setBounds(50, 100, 120, 30);
+        tf_login_uname = new JTextField();
+        tf_login_uname.setBounds(160, 100, 120, 30);
 
 
         login_password = new JLabel("Password :");
@@ -165,9 +163,9 @@ public class Registration extends JFrame implements ActionListener{
         signup_panel.add(btn_signup);
 
 
-        login_panel.add(login_email);
+        login_panel.add(login_uname);
         login_panel.add(login_password);
-        login_panel.add(tf_login_email);
+        login_panel.add(tf_login_uname);
         login_panel.add(tf_login_password);
         login_panel.add(btn_login);
 
@@ -198,6 +196,7 @@ public class Registration extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == signup) {
+            //dispose();
             JInternalFrame f = new JInternalFrame();
             f.add(signup_panel);
             f.setSize(600, 800);
@@ -205,11 +204,13 @@ public class Registration extends JFrame implements ActionListener{
             //f.setClosable(true);
             //signup.disable();
 
+
             front.add(f);
             f.setVisible(true);
 
         }
         if (e.getSource() == login) {
+            //dispose();
             JInternalFrame f = new JInternalFrame();
             f.add(login_panel);
             f.setSize(600, 800);
@@ -222,11 +223,13 @@ public class Registration extends JFrame implements ActionListener{
         }
         if (e.getSource() == btn_signup) {
 
+            //dispose();
             SignUp();
         }
 
         if (e.getSource() == btn_login) {
 
+            //dispose();
             Login();
 
         }
