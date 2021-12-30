@@ -1,269 +1,231 @@
 package mhms;
-import java.sql.*;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-public class Registration extends JFrame implements ActionListener{
-
-    JFrame frame;
-    JPanel signup_panel, front, registration;
-    JPanel login_panel;
-    JLabel signup_username, welcome, signup_email, signup_password, signup_confirm_password, signup_name, signup_phone, signup_address, signup_age, signup_ins, signup_edu;
-    JLabel login_uname, login_password;
-    JTextField tf_signup_username, tf_signup_email, tf_login_uname, tf_signup_name, tf_signup_phone, tf_signup_address, tf_signup_age, tf_signup_ins, tf_signup_edu;
-    JPasswordField tf_signup_password, tf_signup_confirm_password, tf_login_password;
-    JButton btn_signup, btn_login, login, signup;
-    Boolean isLogined;
 
 
-    public Registration()
-    {
-        frame = new JFrame();
-        signup_panel = new JPanel();
-        front = new JPanel();
-        registration = new JPanel();
-        login_panel = new JPanel();
+public class Registration extends JFrame {
 
+    public Registration(){
+        //setSize(500, 460);
+        setSize(500, 710);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(3);
+        setLayout(null);
 
-        welcome = new JLabel("Welcome to Mess & Hostel Management System");
+        Font lableFont = ((new Font("Arial", Font.BOLD,16)));
+        Font txtFont = ((new Font("Arial", Font.ITALIC,12)));
 
+        JPanel headerpanel = new JPanel();
+        headerpanel.setBackground(Color.PINK);
+        headerpanel.setBounds(5, 5, 490, 60);
+        add(headerpanel);
 
-        signup_name = new JLabel("Name: ");
-        signup_name.setBounds(10, 60, 120, 30);
-        tf_signup_name = new JTextField();
-        tf_signup_name.setBounds(200, 60, 200, 30);
+        JLabel headerTxt = new JLabel("Registration form");
+        headerTxt.setFont((new Font("Arial", Font.BOLD, 30)));
+        headerpanel.add(headerTxt);
 
+        //JPanel inputPanel = new JPanel();
+        JPanel signup_panel = new JPanel();
 
-        signup_username = new JLabel("User Name : ");
-        signup_username.setBounds(10, 100, 120, 30);
-        tf_signup_username = new JTextField();
-        tf_signup_username.setBounds(200, 100, 200, 30);
+        signup_panel.setBackground(new Color(199,227,240));
+        signup_panel.setBounds(5, 70, 490, 625);
+        //inputPanel.setBounds(5, 70, 490, 425);
+        signup_panel.setLayout(null);
+        add(signup_panel);
 
-
-
-        signup_email = new JLabel("Email : ");
-        signup_email.setBounds(10, 140, 120, 30);
-        tf_signup_email = new JTextField();
-        tf_signup_email.setBounds(200, 140, 200, 30);
-
-
-        signup_password = new JLabel("Password : ");
-        signup_password.setBounds(10, 180, 120, 30);
-        tf_signup_password = new JPasswordField();
-        tf_signup_password.setBounds(200, 180, 200, 30);
-
-
-        signup_confirm_password = new JLabel("Confirm Password : ");
-        signup_confirm_password.setBounds(10, 220, 180, 30);
-        tf_signup_confirm_password = new JPasswordField();
-        tf_signup_confirm_password.setBounds(200, 220, 200, 30);
-
-        signup_phone = new JLabel("Phone: ");
-        signup_phone.setBounds(10, 260, 120, 30);
-        tf_signup_phone = new JTextField();
-        tf_signup_phone.setBounds(200, 260, 200, 30);
-
-        signup_address = new JLabel("Address: ");
-        signup_address.setBounds(10, 300, 120, 30);
-        tf_signup_address = new JTextField();
-        tf_signup_address.setBounds(200, 300, 200, 30);
-
-        signup_ins = new JLabel("Institution: ");
-        signup_ins.setBounds(10, 340, 120, 30);
-        tf_signup_ins = new JTextField();
-        tf_signup_ins.setBounds(200, 340, 200, 30);
-
-        signup_edu = new JLabel("Educational Qualification: ");
-        signup_edu.setBounds(10, 380, 150, 30);
-        tf_signup_edu = new JTextField();
-        tf_signup_edu.setBounds(200, 380, 200, 30);
-
-        signup_age = new JLabel("Age: ");
-        signup_age.setBounds(10, 420, 120, 30);
-        tf_signup_age = new JTextField();
-        tf_signup_age.setBounds(200, 420, 200, 30);
-
-
-
-        btn_signup = new JButton("Register");
-        btn_signup.setBounds(150, 550, 120, 40);
-
-
-
-        signup = new JButton("Sign Up");
-        login = new JButton("Login");
-
-        login_uname = new JLabel("Username:");
-        login_uname.setBounds(50, 100, 120, 30);
-        tf_login_uname = new JTextField();
-        tf_login_uname.setBounds(160, 100, 120, 30);
-
-
-        login_password = new JLabel("Password :");
-        login_password.setBounds(50, 140, 120, 30);
-        tf_login_password = new JPasswordField();
-        tf_login_password.setBounds(160, 140, 120, 30);
-
-        btn_login = new JButton("Login");
-        btn_login.setBounds(160, 220, 80, 30);
-
-
-        //signup_username.setBounds(10, 100, 120, 30);
-
-
-
-        //btn_signup.setBounds(180, 300, 80, 40);
-
-
-
-        //tf_signup_username.setBounds(80, 100, 120, 30);
-
-        //tf_login_password.setBounds(80, 140, 120, 30);
-
-
-        login.setBounds(200, 400, 80, 40);
-        signup.setBounds(400, 400, 80, 40);
-        login.setForeground(Color.blue);
-        signup.setForeground(Color.blue);
-        welcome.setBounds(90, 50, 700, 200);
-        welcome.setFont(new Font("Jokerman", Font.PLAIN, 26));
-        welcome.setForeground(Color.BLUE);
-        registration.add(welcome);
-        registration.add(login);
-        registration.add(signup);
-
-        signup_panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Registration FORM", TitledBorder.CENTER, TitledBorder.TOP));
-        login_panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "LOGIN FORM", TitledBorder.CENTER, TitledBorder.TOP));
-
+        // Name Field
+        JLabel signup_name = new JLabel(("Name : "));
+        signup_name.setBounds(130, 5, 100, 25);
+        signup_name.setFont(lableFont);
         signup_panel.add(signup_name);
+
+
+        JTextField tf_signup_name = new JTextField();
+        tf_signup_name.setBounds(200, 5, 200, 25);
+        tf_signup_name.setFont(txtFont);
         signup_panel.add(tf_signup_name);
-        signup_panel.add(signup_username);
-        signup_panel.add(tf_signup_username);
+
+        //EmailFirld
+        JLabel signup_email = new JLabel("Email : ");
+        signup_email.setBounds(130, 50, 100, 25);
+        signup_email.setFont(lableFont);
         signup_panel.add(signup_email);
+
+        JTextField tf_signup_email = new JTextField();
+        tf_signup_email.setBounds(200, 50, 200, 25);
+        tf_signup_email.setFont(txtFont);
         signup_panel.add(tf_signup_email);
+
+        // User name
+        JLabel signup_username = new JLabel("User Name : ");
+        signup_username.setBounds(90, 100, 100, 25);
+        signup_username.setFont(lableFont);
+        signup_panel.add(signup_username);
+
+        JTextField tf_signup_username = new JTextField();
+        tf_signup_username.setBounds(200, 100, 200, 25);
+        tf_signup_username.setFont(txtFont);
+        signup_panel.add(tf_signup_username);
+
+
+        //Passwords Forld
+        JLabel signup_password = new JLabel("Password : ");
+        signup_password.setBounds(95, 150, 100, 25);
+        signup_password.setFont(lableFont);
         signup_panel.add(signup_password);
+
+        JPasswordField tf_signup_password = new JPasswordField();
+        tf_signup_password.setBounds(200, 150, 200, 25);
+        //tf_signup_password.setFont(lableFont);
         signup_panel.add(tf_signup_password);
+
+
+        // ConfirmPassword
+        JLabel signup_confirm_password = new JLabel("Confirm Password :");
+        signup_confirm_password.setBounds(30, 200, 170, 25);
+        signup_confirm_password.setFont(lableFont);
         signup_panel.add(signup_confirm_password);
+
+        JPasswordField tf_signup_confirm_password = new JPasswordField();
+        tf_signup_confirm_password.setBounds(200, 200, 200, 25);
+        //tf_signup_confirm_password.setFont(lableFont);
         signup_panel.add(tf_signup_confirm_password);
+
+        //Mobile
+        JLabel signup_phone = new JLabel("Mobile : ");
+        signup_phone.setBounds(120, 250, 100, 25);
+        signup_phone.setFont(lableFont);
         signup_panel.add(signup_phone);
+
+        JTextField tf_signup_phone = new JTextField();
+        tf_signup_phone.setBounds(200, 250, 200, 25);
+        tf_signup_phone.setFont(txtFont);
         signup_panel.add(tf_signup_phone);
+
+        //Address
+        JLabel signup_address = new JLabel(("Address : "));
+        signup_address.setBounds(110, 300, 100, 25);
+        signup_address.setFont(lableFont);
         signup_panel.add(signup_address);
+
+        JTextField tf_signup_address = new JTextField();
+        tf_signup_address.setBounds(200, 300, 200, 25);
+        tf_signup_address.setFont(txtFont);
         signup_panel.add(tf_signup_address);
+
+
+        // Profession
+
+        JLabel signup_profession = new JLabel("Profession : ");
+        signup_profession.setBounds(90, 350, 100, 25);
+        signup_profession.setFont(lableFont);
+        signup_panel.add(signup_profession);
+
+        JTextField tf_signup_profession = new JTextField();
+        tf_signup_profession.setBounds(200, 350, 200, 25);
+        tf_signup_profession.setFont(txtFont);
+        signup_panel.add(tf_signup_profession);
+
+
+        // Institution
+
+        JLabel signup_ins = new JLabel("Institution : ");
+        signup_ins.setBounds(95, 400, 100, 25);
+        signup_ins.setFont(lableFont);
         signup_panel.add(signup_ins);
+
+        JTextField tf_signup_ins = new JTextField();
+        tf_signup_ins.setBounds(200, 400, 200, 25);
+        tf_signup_ins.setFont(txtFont);
         signup_panel.add(tf_signup_ins);
+
+        // Education
+
+        JLabel signup_edu = new JLabel("Educational Qualifi. : ");
+        signup_edu.setBounds(24, 450, 170, 25);
+        signup_edu.setFont(lableFont);
         signup_panel.add(signup_edu);
+
+        JTextField tf_signup_edu = new JTextField();
+        tf_signup_edu.setBounds(200, 450, 200, 25);
+        tf_signup_edu.setFont(txtFont);
         signup_panel.add(tf_signup_edu);
+
+        // Age
+        JLabel signup_age = new JLabel("Age : ");
+        signup_age.setBounds(142, 500, 100, 25);
+        signup_age.setFont(lableFont);
         signup_panel.add(signup_age);
+
+        JTextField tf_signup_age = new JTextField();
+        tf_signup_age.setBounds(200, 500, 200, 25);
+        tf_signup_age.setFont(txtFont);
         signup_panel.add(tf_signup_age);
+
+        // Button
+        JButton btn_signup = new JButton("Register");
+        btn_signup.setBounds(300, 550, 100, 30);
+        btn_signup.setBackground(new Color(219, 143, 160));
+        btn_signup.setFont(lableFont);
+        btn_signup.setForeground(Color.WHITE);
+        btn_signup.setBorder(new LineBorder(Color.RED));
         signup_panel.add(btn_signup);
 
 
-        login_panel.add(login_uname);
-        login_panel.add(login_password);
-        login_panel.add(tf_login_uname);
-        login_panel.add(tf_login_password);
-        login_panel.add(btn_login);
+        JButton btn_login = new JButton("Login");
+        btn_login.setBounds(100, 550, 100, 30);
+        btn_login.setBackground(new Color(93, 161, 217));
+        btn_login.setFont(lableFont);
+        btn_login.setForeground(Color.WHITE);
+        btn_login.setBorder(new LineBorder(Color.BLUE));
+        signup_panel.add(btn_login);
 
-        signup_panel.setLayout(null);
-        login_panel.setLayout(null);
-        registration.setLayout(null);
-        front.setLayout(null);
-        front.setBackground(Color.BLUE);
-
-        frame.add(front);
-        frame.add(registration);
-
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        frame.setSize(600, 400);
-        frame.setLayout(new GridLayout(1, 2));
-        frame.setTitle("Welcome Page");
-
-        frame.setVisible(true);
-
-        //String UserName = tf_signup_username.getText();
-
-        btn_signup.addActionListener(this);
-        btn_login.addActionListener(this);
-        login.addActionListener(this);
-        signup.addActionListener(this);
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == signup) {
-            //dispose();
-            JInternalFrame f = new JInternalFrame();
-            f.add(signup_panel);
-            f.setSize(600, 800);
-            f.setTitle("Signup Form");
-            //f.setClosable(true);
-            //signup.disable();
+        btn_signup.setFocusable(false);
+        btn_login.setFocusable(false);
+        setVisible(true);
 
 
-            front.add(f);
-            f.setVisible(true);
-
-        }
-        if (e.getSource() == login) {
-            //dispose();
-            JInternalFrame f = new JInternalFrame();
-            f.add(login_panel);
-            f.setSize(600, 800);
-            f.setTitle("Login Form");
-            //f.setClosable(true);
-            //login.disable();
-            front.add(f);
-            f.setVisible(true);
-
-        }
-        if (e.getSource() == btn_signup) {
-
-            //dispose();
-            SignUp();
-        }
-
-        if (e.getSource() == btn_login) {
-
-            //dispose();
-            Login();
-
-        }
-    }
-
-    private void SignUp() {
-        int x = 0;
-        Connection con = ConnectionProvider.getConnection();
-        String Username = tf_signup_username.getText();
-        String Email = tf_signup_email.getText();
-        char[] p1 = tf_signup_password.getPassword();
-        String Password = new String(p1);
-        char[] p2 = tf_signup_confirm_password.getPassword();
-        String Confirm_password = new String(p2);
-
-        if(Confirm_password.equals(Password)){
-            try {
-                PreparedStatement ps = con.prepareStatement("insert into member(username,email,password) values(?,?,?)");
-                ps.setString(1, Username);
-                ps.setString(2, Email);
-                ps.setString(3, Password);
-                ps.executeUpdate();
-                x++;
-                if (x > 0) {
-                    JOptionPane.showMessageDialog(btn_signup, "Data Saved Successfully");
-                }
-            }catch (Exception e){
-                System.out.println(e);
+        btn_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Login();
             }
-        }else {
-            JOptionPane.showMessageDialog(btn_signup, "Password Does Not Match");
-        }
-    }
-    private void Login() {
+        });
+
+        btn_signup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //dispose();
+
+                String name = tf_signup_name.getText();
+                String email = tf_signup_email.getText();
+                String uname = tf_signup_username.getText();
+                String p1 = String.valueOf(tf_signup_password.getPassword());
+                String p2 = String.valueOf(tf_signup_confirm_password.getPassword());
+                String phone = tf_signup_phone.getText();
+                String address = tf_signup_address.getText();
+                String profession = tf_signup_profession.getText();
+                String institution = tf_signup_ins.getText();
+                String education = tf_signup_edu.getText();
+                String age = tf_signup_age.getText();
+
+                ConnectionProvider db = new ConnectionProvider();
+                String queryinsert = "INSERT INTO `member`(`name`, `email`, `uname`, `pass`, `cpass`, `phone`, `address`, `profession`, `institution`, `education`, `age`) VALUES ('"+name+"','"+email+"','"+uname+"','"+p1+"','"+p2+"','"+phone+"','"+address+"','"+profession+"','"+institution+"','"+education+"','"+age+"')";
+
+
+                db.RegisterInsert(queryinsert);
+            }
+        });
+
+
 
     }
 }
