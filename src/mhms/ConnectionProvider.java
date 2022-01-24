@@ -13,6 +13,7 @@ public class ConnectionProvider{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost:3306/mess_and_hostel_management";
+            //String url = "jdbc:mysql://localhost:3306/mhms";
             String uname = "root";
             String pass = "";
             con = DriverManager.getConnection(url, uname, pass);
@@ -32,6 +33,7 @@ public class ConnectionProvider{
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "Registration not Complete!");
+            System.out.println(e);
 
         }
 
@@ -62,5 +64,23 @@ public class ConnectionProvider{
         st.close();
         con.close();
 
+    }
+
+    public void members(String query) {
+
+    }
+
+    public void count(String cnt) {
+
+        ResultSet n = null;
+        try {
+            st = con.createStatement();
+            n = st.executeQuery(cnt);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println(n);
+        //return 0;
     }
 }

@@ -88,13 +88,21 @@ public class Login extends JFrame {
                 String Login_uname = nameTxt.getText();
                 String Login_pass = String.valueOf(passTxt.getPassword());
 
-                ConnectionProvider db = new ConnectionProvider();
-                String queryLogin = "SELECT * FROM `member` WHERE uname='"+Login_uname+"'";
-                try {
-                    db.Login(queryLogin, Login_uname, Login_pass);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                if(Login_uname.equals("admin")&&Login_pass.equals("12345")){
+                    //System.out.println("Admin");
+                    dispose();
+                    new Admin();
                 }
+                else{
+                    ConnectionProvider db = new ConnectionProvider();
+                    String queryLogin = "SELECT * FROM `member` WHERE uname='"+Login_uname+"'";
+                    try {
+                        db.Login(queryLogin, Login_uname, Login_pass);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
             }
         });
     }
