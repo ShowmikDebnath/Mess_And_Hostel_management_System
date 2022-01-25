@@ -3,7 +3,7 @@ package mhms;
 public class Main {
 
     public static void main(String[] args) {
-        new Registration();
+        //new Registration();
         //new Login();
         //new Admin();
         //new AdminMembers();
@@ -12,6 +12,8 @@ public class Main {
         //new Admin_meal();
         //new DailyMenu();
         //new tcost();
+        //new User();
+        new HomePage();
 
         //new mealBalance();
 

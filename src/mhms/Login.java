@@ -97,6 +97,7 @@ public class Login extends JFrame {
                     ConnectionProvider db = new ConnectionProvider();
                     String queryLogin = "SELECT * FROM `member` WHERE uname='"+Login_uname+"'";
                     try {
+                        dispose();
                         db.Login(queryLogin, Login_uname, Login_pass);
                     } catch (Exception ex) {
                         ex.printStackTrace();

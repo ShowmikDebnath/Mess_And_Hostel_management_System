@@ -11,9 +11,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class tcost extends JFrame{
 
-    public tcost(){
+public class UTcost extends JFrame {
+
+    public UTcost(){
         setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
@@ -61,17 +62,17 @@ public class tcost extends JFrame{
         btn_back.setFocusable(false);
 
 
-        JButton btn_details = new JButton("Details");
-        //btn_details.setBounds(100, 120, 100, 30);
-        btn_details.setBounds(300, 120, 100, 30);
-
-        btn_details.setBackground(new Color(219, 143, 160));
-        btn_details.setFont(labelFont);
-        btn_details.setForeground(Color.WHITE);
-        btn_details.setBorder(new LineBorder((Color.RED)));
-        login_panel.add(btn_details);
-
-        btn_details.setFocusable(false);
+//        JButton btn_details = new JButton("Details");
+//        //btn_details.setBounds(100, 120, 100, 30);
+//        btn_details.setBounds(300, 120, 100, 30);
+//
+//        btn_details.setBackground(new Color(219, 143, 160));
+//        btn_details.setFont(labelFont);
+//        btn_details.setForeground(Color.WHITE);
+//        btn_details.setBorder(new LineBorder((Color.RED)));
+//        login_panel.add(btn_details);
+//
+//        btn_details.setFocusable(false);
 
         setVisible(true);
 
@@ -108,33 +109,33 @@ public class tcost extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Admin();
+                new User();
             }
         });
 
-        btn_details.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //dispose();
-                try{
-                    final URI url = new URI("http://localhost/phpmyadmin/index.php?route=/sql&server=1&db=mess_and_hostel_management&table=tcost&pos=0");
-                    if(Desktop.isDesktopSupported()){
-                        Desktop desktop = Desktop.getDesktop();
-                        try{
-                            desktop.browse(url);
-
-                        }
-                        catch (Exception ex){
-                            System.out.println(ex);
-                        }
-                    }
-                    else{
-                        System.out.println("ERROR!");
-                    }
-                }catch (Exception ex){
-                    System.out.println(ex);
-                }
-            }
-        });
+//        btn_details.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                dispose();
+//                try{
+//                    final URI url = new URI("http://localhost/phpmyadmin/index.php?route=/sql&server=1&db=mess_and_hostel_management&table=tcost&pos=0");
+//                    if(Desktop.isDesktopSupported()){
+//                        Desktop desktop = Desktop.getDesktop();
+//                        try{
+//                            desktop.browse(url);
+//
+//                        }
+//                        catch (Exception ex){
+//                            System.out.println(ex);
+//                        }
+//                    }
+//                    else{
+//                        System.out.println("ERROR!");
+//                    }
+//                }catch (Exception ex){
+//                    System.out.println(ex);
+//                }
+//            }
+//        });
     }
 }

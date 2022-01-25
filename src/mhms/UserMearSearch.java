@@ -1,14 +1,17 @@
 package mhms;
 
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-public class SearchByUname extends JFrame{
-
-    SearchByUname(){
+public class UserMearSearch extends JFrame{
+    public UserMearSearch(){
         setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
@@ -21,7 +24,7 @@ public class SearchByUname extends JFrame{
         headerpanel.setBackground(new Color(93, 161, 217));
         headerpanel.setBounds(5, 5, 490, 60);
 
-        JLabel headerTxt = new JLabel(("Search Member"));
+        JLabel headerTxt = new JLabel(("Search Your Total Meal"));
         headerTxt.setFont((new Font("Arial", Font.BOLD, 30)));
         headerpanel.add(headerTxt);
         add(headerpanel);
@@ -79,28 +82,11 @@ public class SearchByUname extends JFrame{
 
         setVisible(true);
 
-
-
-        back_Btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                //new Registration();
-//                String strName = nameTxt.getText();
-//                System.out.println(strName);
-                new Admin();
-
-            }
-        });
-
         search_Btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String strName = nameTxt.getText();
-                dispose();
-                new memberserch(strName);
-
+                //new UPMeal(strName);
             }
         });
     }

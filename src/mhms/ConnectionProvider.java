@@ -49,10 +49,13 @@ public class ConnectionProvider{
 
             while(rs.next()){
                 if((Login_pass.equals(rs.getString("pass")))&&(Login_uname.equals(rs.getString("uname")))){
+                //if((Login_uname.equals(rs.getString("uname")))&&(Login_pass.equals(rs.getString("pass")))){
                     JOptionPane.showMessageDialog(null, "Login Succesfully!");
+                    new User();
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Login Failed");
+                    JOptionPane.showMessageDialog(null, "Login Failed!");
+                    new Login();
                 }
             }
 

@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 public class Admin_meal extends JFrame{
 
     public Admin_meal() throws URISyntaxException {
-        final URI url = new URI("http://localhost/phpmyadmin/index.php?route=/sql&db=mess_and_hostel_management&table=member&pos=0");
+        final URI url = new URI("http://localhost/phpmyadmin/index.php?route=/sql&server=1&db=mess_and_hostel_management&table=tmeal&pos=0");
         if(Desktop.isDesktopSupported()){
             Desktop desktop = Desktop.getDesktop();
             try{

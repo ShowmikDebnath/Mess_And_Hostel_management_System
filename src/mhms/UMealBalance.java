@@ -5,15 +5,15 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class tcost extends JFrame{
+public class UMealBalance extends JFrame{
 
-    public tcost(){
+    public UMealBalance(){
+
         setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
@@ -26,7 +26,7 @@ public class tcost extends JFrame{
         headerpanel.setBackground(new Color(93, 161, 217));
         headerpanel.setBounds(5, 5, 490, 60);
 
-        JLabel headerTxt = new JLabel(("Total Cost"));
+        JLabel headerTxt = new JLabel(("Meal Balance"));
         headerTxt.setFont((new Font("Arial", Font.BOLD, 30)));
         headerpanel.add(headerTxt);
         add(headerpanel);
@@ -37,8 +37,8 @@ public class tcost extends JFrame{
         login_panel.setLayout(null);
         add(login_panel);
 
-        JLabel namelabel = new JLabel("Cost for this month : ");
-        namelabel.setBounds(20, 25, 170, 25);
+        JLabel namelabel = new JLabel("Balance for this month : ");
+        namelabel.setBounds(10, 25, 190, 25);
         namelabel.setFont(labelFont);
         login_panel.add(namelabel);
 
@@ -61,22 +61,25 @@ public class tcost extends JFrame{
         btn_back.setFocusable(false);
 
 
-        JButton btn_details = new JButton("Details");
-        //btn_details.setBounds(100, 120, 100, 30);
-        btn_details.setBounds(300, 120, 100, 30);
+//        JButton btn_details = new JButton("Details");
+//        //btn_details.setBounds(100, 120, 100, 30);
+//        btn_details.setBounds(300, 120, 100, 30);
+//
+//        btn_details.setBackground(new Color(219, 143, 160));
+//        btn_details.setFont(labelFont);
+//        btn_details.setForeground(Color.WHITE);
+//        btn_details.setBorder(new LineBorder((Color.RED)));
+//        login_panel.add(btn_details);
 
-        btn_details.setBackground(new Color(219, 143, 160));
-        btn_details.setFont(labelFont);
-        btn_details.setForeground(Color.WHITE);
-        btn_details.setBorder(new LineBorder((Color.RED)));
-        login_panel.add(btn_details);
-
-        btn_details.setFocusable(false);
+//        btn_details.setFocusable(false);
 
         setVisible(true);
 
         nameTxt.setEditable(false);
 
+
+
+        String s11 = null, s22 = null;
         try{
 //            String str = "sd101";
 
@@ -91,12 +94,45 @@ public class tcost extends JFrame{
 
             ResultSet rs = st.executeQuery("SELECT sum(pprice) FROM tcost");
 
-
+            //String s11;
             while(rs.next()){
-                String s11 = rs.getString(1);
+                s11 = rs.getString(1);
 
+                //nameTxt.setText(s11);
 
-                nameTxt.setText(s11);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        try{
+//            String str = "sd101";
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/mess_and_hostel_management";
+            //String url = "jdbc:mysql://localhost:3306/mhms";
+            String uname = "root";
+            String pass = "";
+            Connection con = DriverManager.getConnection(url, uname, pass);
+
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery("SELECT sum(payment) FROM member");
+
+            //String s22;
+            while(rs.next()){
+                s22 = rs.getString(1);
+
+                //nameTxt.setText(s11);
+
+                int is11 = Integer.parseInt(s11);
+                int is22 = Integer.parseInt(s22);
+
+                int cost = is22-is11;
+
+                nameTxt.setText(String.valueOf(cost));
+
 
             }
         }
@@ -108,33 +144,9 @@ public class tcost extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Admin();
-            }
-        });
-
-        btn_details.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //dispose();
-                try{
-                    final URI url = new URI("http://localhost/phpmyadmin/index.php?route=/sql&server=1&db=mess_and_hostel_management&table=tcost&pos=0");
-                    if(Desktop.isDesktopSupported()){
-                        Desktop desktop = Desktop.getDesktop();
-                        try{
-                            desktop.browse(url);
-
-                        }
-                        catch (Exception ex){
-                            System.out.println(ex);
-                        }
-                    }
-                    else{
-                        System.out.println("ERROR!");
-                    }
-                }catch (Exception ex){
-                    System.out.println(ex);
-                }
+                new User();
             }
         });
     }
+
 }

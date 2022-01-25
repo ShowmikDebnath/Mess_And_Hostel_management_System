@@ -126,7 +126,7 @@ public class Admin extends JFrame {
         btn_tmeal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                //dispose();
                 //new AdminMembers();
                 //new SearchByUname();
                 try {
@@ -139,7 +139,7 @@ public class Admin extends JFrame {
         btn_payment_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                //dispose();
                 //new AdminMembers();
                 //new SearchByUname();
                 try {
